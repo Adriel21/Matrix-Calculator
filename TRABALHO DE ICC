@@ -3,7 +3,7 @@
 
 
 int main(void){
-	int n,cont1, cont2, V,E,  MatrizQ[V][E];
+	int n,cont1, cont2, V,E;
 	float vetor[n];
 	char opcao,alter;
 	
@@ -17,7 +17,7 @@ int main(void){
 	
 	switch(opcao){
 		case '1': 
-			system("cls");
+			
 			printf("\t\tMenu de Operacoes com vetores\n");
 			printf("\t\t1-Leitura dos Vetores\n");
 			printf("\t\t2-Soma de Vetores\n");
@@ -26,14 +26,18 @@ int main(void){
 			printf("\t\t5-Voltar ao Menu Anterior\n");
 			scanf("\t\t%c",&alter);
 			
-			if 	(alter=='1'){
+			switch(alter){
+			
+			case '1':
 				
 		        printf("\nQuantos vetores voce quer expressar? ");
 				scanf("%d", &V);
+				printf("\nDigite a quantidade de elementos de cada vetor ");
+				scanf("%d", &E);
+				
+				int MatrizQ[V][E];
 				
 				for(cont1=0; cont1<V; cont1++){
-					printf("\nDigite a quantidade de elementos do vetor %d: ", cont1+1);
-					scanf("%d", &E);
 					printf("Digite os elementos do vetor %d\n", cont1+1);
 					    for(cont2=0; cont2<E; cont2++){
 					    	scanf("%d", &MatrizQ[cont1][cont2]);
@@ -53,12 +57,12 @@ int main(void){
 						}
 					}
 				}
-		    }
-		    
-		    else if(alter=='2'){
+		    break;
+		    /*
+		    case '2':
 		    	printf("\nQuantos vetores voce quer somar? ");
 				scanf("%d", &V);
-				
+				int MatrizQ[V][E];
 				for(cont1=0; cont1<V; cont1++){
 					printf("\nDigite a quantidade de elementos do vetor %d: ", cont1+1);
 					scanf("%d", &E);
@@ -73,7 +77,9 @@ int main(void){
 					    	scanf("%d", &MatrizQ[cont1][cont2]);
 						}
 				}
-			}
+			
+			*/
+		    }
     }
     return 0;
 }
