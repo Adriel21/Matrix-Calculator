@@ -1,0 +1,79 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+
+int main(void){
+	int n,cont1, cont2, V,E,  MatrizQ[V][E];
+	float vetor[n];
+	char opcao,alter;
+	
+		
+	printf("\t\t\tMENU INICIAL DO PROGRAMA\n\n");
+	printf("\tESCOLHA UMA DAS ALTERNATIVAS ABAIXO PARA INICIARMOS AS OPERACOES:\n");
+	printf("\t1-Operacoes com Vetores  ;\n");
+	printf("\t2-Operacoes com Matrizes ;\n");
+	printf("\t0-Sair do Programa ;\n");
+	scanf("%c",&opcao);
+	
+	switch(opcao){
+		case '1': 
+			system("cls");
+			printf("\t\tMenu de Operacoes com vetores\n");
+			printf("\t\t1-Leitura dos Vetores\n");
+			printf("\t\t2-Soma de Vetores\n");
+			printf("\t\t3-Multiplicar um dos vetores por um escalar\n");
+			printf("\t\t4-Realizar o Produto escalar de Vetores\n");
+			printf("\t\t5-Voltar ao Menu Anterior\n");
+			scanf("\t\t%c",&alter);
+			
+			if 	(alter=='1'){
+				
+		        printf("\nQuantos vetores voce quer expressar? ");
+				scanf("%d", &V);
+				
+				for(cont1=0; cont1<V; cont1++){
+					printf("\nDigite a quantidade de elementos do vetor %d: ", cont1+1);
+					scanf("%d", &E);
+					printf("Digite os elementos do vetor %d\n", cont1+1);
+					    for(cont2=0; cont2<E; cont2++){
+					    	scanf("%d", &MatrizQ[cont1][cont2]);
+						}
+				}
+				
+				for(cont1=0; cont1<V; cont1++){
+					printf("Vetor %d", cont1+1);
+					printf("(");
+					for(cont2=0; cont2<E; cont2++){
+						if(cont2!= E-1){
+							printf("%d,", MatrizQ[cont1][cont2]);	
+						}
+						
+						else if(cont2==E-1){
+							printf("%d)\n", MatrizQ[cont1][cont2]);
+						}
+					}
+				}
+		    }
+		    
+		    else if(alter=='2'){
+		    	printf("\nQuantos vetores voce quer somar? ");
+				scanf("%d", &V);
+				
+				for(cont1=0; cont1<V; cont1++){
+					printf("\nDigite a quantidade de elementos do vetor %d: ", cont1+1);
+					scanf("%d", &E);
+					printf("Digite os elementos do vetor %d\n", cont1+1);
+					    for(cont2=0; cont2<E; cont2++){
+					    	scanf("%d", &MatrizQ[cont1][cont2]);
+						}
+				}
+				
+				for(cont1=0; cont1<V; cont1++){
+					    for(cont2=0; cont2<E; cont2++){
+					    	scanf("%d", &MatrizQ[cont1][cont2]);
+						}
+				}
+			}
+    }
+    return 0;
+}
