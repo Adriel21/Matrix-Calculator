@@ -18,6 +18,6 @@ struct Vetor leituraDeVet (int elem){
     	
 	printf("\n\n");
 	
-	return vetor;
 	}
-}			
+	return vetor;
+}				
