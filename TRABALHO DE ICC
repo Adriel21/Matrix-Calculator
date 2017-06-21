@@ -1,60 +1,43 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "BIBLIADRIEL.h"
-
+#include "BIBLIOTECA.h"
 
 int main(void){
-	int n,cont1, cont2, V,E;
-	char opcao,alter;
-	
-		
-	printf("\t\t\tMENU INICIAL DO PROGRAMA\n\n");
-	printf("\tESCOLHA UMA DAS ALTERNATIVAS ABAIXO PARA INICIARMOS AS OPERACOES:\n");
-	printf("\t1-Operacoes com Vetores  ;\n");
-	printf("\t2-Operacoes com Matrizes ;\n");
-	printf("\t0-Sair do Programa ;\n");
-	scanf("%c",&opcao);
+	char opcao , alter;	
+	printf(">>>>>>>>>>>>>>>>>>>>>>>>>> MENU INICIAL DO PROGRAMA <<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n");
+	printf("\tESCOLHA UMA DAS ALTERNATIVAS ABAIXO PARA INICIARMOS AS OPERACOES:\n\n");
+	printf("\t\t1-Operacoes com Vetores  ;\n");
+	printf("\t\t2-Operacoes com Matrizes ;\n");
+	printf("\t\t0-Sair do Programa ;\n");
+	scanf("%c", &opcao);
 	
 	switch(opcao){
 		case '1': 
 			
-			printf("\t\tMenu de Operacoes com vetores\n");
+			printf("\n\n\t\t *MENU DE OPERACOES COM VETORES* \n\n");
+			printf("\t\tESCOLHA UMA DAS ALTERNATIVAS ABAIXO :\n\n");
 			printf("\t\t1-Leitura dos Vetores\n");
 			printf("\t\t2-Soma de Vetores\n");
 			printf("\t\t3-Multiplicar um dos vetores por um escalar\n");
 			printf("\t\t4-Realizar o Produto escalar de Vetores\n");
 			printf("\t\t5-Voltar ao Menu Anterior\n");
-			scanf("\t\t%c",&alter);
-			
+			scanf("\t\t%c", &alter);
+			  
 			switch(alter){
 			
-			case '1':
-				
-		        ExibirVetor( n,  cont1,  cont2, V, E);
+			case '1': 
+			    int elem;
+			    struct Vetor vetorA;
+			    struct Vetor vetorB;
+		        printf("\n\n Digite o numero de elementos dos vetores: ");
+		        scanf("%d", &elem);
 		        
+		        vetorA = leituraDeVet(elem);
+		        vetorB = leituraDeVet(elem);
 		    break;
 		    
-		    case '2':
-		    	printf("\nQuantos vetores voce quer somar? ");
-				scanf("%d", &V);
-				int MatrizQ[V][E];
-				for(cont1=0; cont1<V; cont1++){
-					printf("\nDigite a quantidade de elementos do vetor %d: ", cont1+1);
-					scanf("%d", &E);
-					printf("Digite os elementos do vetor %d\n", cont1+1);
-					    for(cont2=0; cont2<E; cont2++){
-					    	scanf("%d", &MatrizQ[cont1][cont2]);
-						}
-				}
-				
-				for(cont1=0; cont1<V; cont1++){
-					    for(cont2=0; cont2<E; cont2++){
-					    	scanf("%d", &MatrizQ[cont1][cont2]);
-						}
-				}
-			
-			break;
 		    }
+		break;
     }
     return 0;
 }
