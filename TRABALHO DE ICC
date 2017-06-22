@@ -3,7 +3,9 @@
 #include "BIBLIOTECA.h"
 
 int main(void){
-	char opcao , alter;	
+	char opcao , alter, vetoresProntos= 'F';	
+	struct Vetor vetorA;
+    struct Vetor vetorB;
 	printf(">>>>>>>>>>>>>>>>>>>>>>>>>> MENU INICIAL DO PROGRAMA <<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n");
 	printf("\tESCOLHA UMA DAS ALTERNATIVAS ABAIXO PARA INICIARMOS AS OPERACOES:\n\n");
 	printf("\t\t1-Operacoes com Vetores  ;\n");
@@ -11,6 +13,12 @@ int main(void){
 	printf("\t\t0-Sair do Programa ;\n");
 	scanf("%c", &opcao);
 	
+	if(opcao>3&&opcao<0){
+				printf("Operacao invalida.");
+	}
+	
+	do{
+		
 	switch(opcao){
 		case '1': 
 			
@@ -20,24 +28,85 @@ int main(void){
 			printf("\t\t2-Soma de Vetores\n");
 			printf("\t\t3-Multiplicar um dos vetores por um escalar\n");
 			printf("\t\t4-Realizar o Produto escalar de Vetores\n");
-			printf("\t\t5-Voltar ao Menu Anterior\n");
+			printf("\t\t0-Voltar ao Menu Anterior\n");
 			scanf("\t\t%c", &alter);
-			  
+			
+			if(alter>5&&alter<0){
+				printf("Operacao invalida.");
+			}
+		else{
+			
 			switch(alter){
 			
 			case '1': 
 			    int elem;
-			    struct Vetor vetorA;
-			    struct Vetor vetorB;
+		
 		        printf("\n\n Digite o numero de elementos dos vetores: ");
 		        scanf("%d", &elem);
 		        
-		        vetorA = leituraDeVet(elem);
-		        vetorB = leituraDeVet(elem);
+		        printf("\n\nDigite os elementos do primeiro vetor: \n");
+		        vetorA = leituraDeVet(elem); exibicaoDeVet (vetorA);
+		        printf("\n\nDigite os elementos do segundo vetor: \n");
+		        vetorB = leituraDeVet(elem); exibicaoDeVet (vetorB);
+		        
+		        vetoresProntos = 'V';
+		    
+		    break;
+		    case '2':
+		    	if( vetoresProntos == 'F'){
+		    	printf("E necessario criar os vetores na opcao 'Leitura de vetores.'");
+		    	}
+		    	
+		    	else{
+		    		struct Vetor vetorC;
+		    		printf("\n\nVetor 1 = "); exibicaoDeVet(vetorA);
+		    		printf("\nVetor 2 = "); exibicaoDeVet(vetorB);
+		    		printf("\n\nA soma dos vetores é: \n"); 
+		    		vetorC= somaDeVet(vetorA, vetorB);
+		    		exibicaoDeVet(vetorC);
+				}
+		    }
+		    
 		    break;
 		    
-		    }
-		break;
+		    case '3':
+		    	if( vetoresProntos == 'F'){
+		    	printf("E necessario criar os vetores na opcao 'Leitura de vetores.'");
+		    	}
+		    	
+		    	else{
+		    		int multiplicador;
+		    		struct Vetor vetorRes;
+		    		char escolha;
+		    		printf("Digite qual vetor voce quer multiplicar por um escalar: ");
+		    		printf("1 - VetorA.");
+		    		printf("2 - VetorB.");
+		    		scanf("%c", &escolha);
+		    		if(escolha>2&&escolha<1){
+		    			printf("Escolha invalida");
+					}
+					printf("Por quanto voce quer multiplicar o vetor: ");
+		    		scanf("%d", &multiplicador);
+		    		switch(escolha){
+		    			case '1':
+		    				
+		    				printf("%d", multiplicador); 
+		    				exibicaoDeVet(vetorA);
+		    				vetorRes = produtoPorEscalar(vetorA, multiplicador);
+		    				exibicaoDeVet(vetorRes);
+		    				
+		    			case '2':
+		    				
+		    				vetorRes = produtoPorEscalar(vetorB, multiplicador);
+		    				printf("%d", multiplicador); 
+		    				exibicaoDeVet(vetorB);
+		    				exibicaoDeVet(vetorRes);
+					}
+				}
+			break;
+		}
+		break;  
     }
-    return 0;
+	}while(opcao != 3);
+    return 0; 
 }
