@@ -65,7 +65,7 @@ int main(void){
 		    		vetorC= somaDeVet(vetorA, vetorB);
 		    		exibicaoDeVet(vetorC);
 				}
-		    }
+		    
 		    
 		    break;
 		    
@@ -75,34 +75,40 @@ int main(void){
 		    	}
 		    	
 		    	else{
-		    		int multiplicador;
+		    		int multiplicador, escolha;
 		    		struct Vetor vetorRes;
-		    		char escolha;
-		    		printf("Digite qual vetor voce quer multiplicar por um escalar: ");
-		    		printf("1 - VetorA.");
-		    		printf("2 - VetorB.");
-		    		scanf("%c", &escolha);
+		    		
+		    		printf("\n\nDigite qual vetor voce quer multiplicar por um escalar: \n");
+		    		printf("1 - VetorA.\n");
+		    		printf("2 - VetorB.\n");
+		    		scanf("%d", &escolha);
+		    		
 		    		if(escolha>2&&escolha<1){
 		    			printf("Escolha invalida");
 					}
-					printf("Por quanto voce quer multiplicar o vetor: ");
+					
+					printf("\nPor quanto voce quer multiplicar o vetor: ");
 		    		scanf("%d", &multiplicador);
-		    		switch(escolha){
-		    			case '1':
+		    		
+		    		if(escolha==1){
 		    				
-		    				printf("%d", multiplicador); 
+		    				printf("%d x ", multiplicador); 
 		    				exibicaoDeVet(vetorA);
+		    				printf("\n Resultado: \n");
 		    				vetorRes = produtoPorEscalar(vetorA, multiplicador);
 		    				exibicaoDeVet(vetorRes);
+		    		} 
+		    		
+		    		else if(escolha==2){
 		    				
-		    			case '2':
-		    				
-		    				vetorRes = produtoPorEscalar(vetorB, multiplicador);
-		    				printf("%d", multiplicador); 
+		    				printf("%d x ", multiplicador); 
 		    				exibicaoDeVet(vetorB);
+		    				printf("\nResultado: \n");
+		    				vetorRes = produtoPorEscalar(vetorB, multiplicador);
 		    				exibicaoDeVet(vetorRes);
-					}
-				}
+		    		}
+			}
+			}
 			break;
 		}
 		break;  
