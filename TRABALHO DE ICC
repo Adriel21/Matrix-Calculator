@@ -48,10 +48,7 @@ void opVetores(){
 			printf("\n\n\t\tOpcao: ");
 			scanf("\t\t%c", &alter);
 			
-		if(alter>5&&alter<0){
-			printf("Operacao invalida.");
-		}
-		else{
+	
 			
 			switch(alter){
 			
@@ -161,9 +158,8 @@ void opVetores(){
 			break;	
 			
 			default: printf("\n\n\t\tOperacao invalida.\n\n");
-			}
-		 
-		}  
+			
+			} 
 		
 	}while(alter!=5);
 }
