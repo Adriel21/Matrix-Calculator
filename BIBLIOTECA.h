@@ -55,3 +55,16 @@ struct Vetor produtoPorEscalar (struct Vetor vetor, int multiplicador){
 	}
 	return vetorRes;
 }
+
+int produtoEscalar(struct Vetor vetorA , struct Vetor vetorB){
+	int i;
+	int Res;
+	struct Vetor vetorRes;
+	vetorRes.elem=vetorA.elem;
+	vetorRes.ender= (int *) malloc(vetorA.elem*sizeof(int));
+	for(i=0; i< vetorA.elem; i++){
+		vetorRes.ender[i] = vetorA.ender[i]*vetorB.ender[i];
+		Res+= vetorRes.ender[i];
+	}
+	return Res;
+}
