@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include "BIBLIOTECA.h"
 
-    char opcao , alter, vetoresProntos = 'F';	
+    char opcao, alter, vetoresProntos = 'F';	
 	struct Vetor vetorA;
     struct Vetor vetorB;
     void opVetores();
     
 int main(void){
-	do{
-	printf(">>>>>>>>>>>>>>>>>>>>>>>>>> MENU INICIAL DO PROGRAMA <<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n");
+
+	printf(">>>>>>>>>>>>>>> CALCULADORA DE VETORES E MATRIZES - MENU INICIAL <<<<<<<<<<<<<<<\n\n");    //MENU PRINCIPAL
 	printf("\tESCOLHA UMA DAS ALTERNATIVAS ABAIXO PARA INICIARMOS AS OPERACOES:\n\n");
 	printf("\t\t1-Operacoes com Vetores  ;\n");
 	printf("\t\t2-Operacoes com Matrizes ;\n");
@@ -18,25 +18,24 @@ int main(void){
 	scanf("%c", &opcao);
 
 			
-	switch(opcao){
-		case '1': 
+	switch(opcao){      //PRIMEIRO SWITCH PARA OPERAÇÕES DE VETORES OU MATRIZES
+		case '1':        
 			
-			opVetores();
+			opVetores();     //CHAMANDO A FUNÇÃO PARA MELHOR COMPREENSÃO DO CÓDIGO
 		
 		break;  
 		
-		//case '2':
+		//case '2':      //CHAMAR A FUNÇÃO OPERAÇÃO DE MATRIZES 
 		
 		//break;
 		
-	    default: printf("\n\n\t\tOperacao Invalida.\n\n");
+	    default: printf("\n\n\t\tOperacao Invalida.\n\n");    // TRATAMENTO DE ERRO
     }
-    }while(opcao!=100000000000000);
 }
 
-void opVetores(){
+void opVetores(){      // FUNÇÃO DAS OPERAÇÕES COM VETORES
 	
-	do{
+	do{      // LAÇO PARA QUE APÓS O PROCEDIMENTO ESCOLHIDO SEJA REALIZADO O "MENU DE OPERACOES COM VETORES" APAREÇA NOVAMENTE
 	
 			printf("\n\n\t\t *MENU DE OPERACOES COM VETORES* \n\n");
 			printf("\t\tESCOLHA UMA DAS ALTERNATIVAS ABAIXO :\n\n");
@@ -50,9 +49,9 @@ void opVetores(){
 			
 	
 			
-			switch(alter){
+			switch(alter){       // SWITCH PARA OS CASOS APONTADOS NO MENU ANTERIOR
 			
-			case '1': 
+			case '1':                    // LEITURA E EXIBIÇÃO DOS VETORES
 			    int elem;
 				
 		        printf("\n\n Digite o numero de elementos dos vetores: ");
@@ -66,8 +65,10 @@ void opVetores(){
 		        vetoresProntos = 'V';
 		    
 		    break;
-		    case '2':
-		    	if( vetoresProntos == 'F'){
+		    
+		    case '2':                                              // SOMA DOS VETORES
+		    
+		    	if( vetoresProntos == 'F'){                        //TRATAMENTO DE ERRO, CASO O USUÁRIO NÃO TENHA INSERIDO OS VETORES NA OPÇÃO "LEU VETOR" 
 		    	printf("\n** E necessario criar os vetores na opcao 'Leitura de vetores', poderas escolhe-la pressionando '1' no menu a seguir. **\n\n");
 		    	}
 		    	
@@ -86,8 +87,9 @@ void opVetores(){
 		    
 		    break;
 		    
-		    case '3':
-		    	if( vetoresProntos == 'F'){
+		    case '3':                                              // PRODUTO DE UM VETOR POR UM ESCALAR
+		    
+		    	if( vetoresProntos == 'F'){                        //TRATAMENTO DE ERRO, CASO O USUÁRIO NÃO TENHA INSERIDO OS VETORES NA OPÇÃO "LEU VETOR" 
 		    	printf("\n** E necessario criar os vetores na opcao 'Leitura de vetores', poderas escolhe-la pressionando '1' no menu a seguir. **\n\n");
 		    	}
 		    	
@@ -134,8 +136,9 @@ void opVetores(){
 			
 			break;
 			
-			case '4':
-				if( vetoresProntos == 'F'){
+			case '4':                                              // PRODUTO ESCALAR ENTRE VETORES
+			
+				if( vetoresProntos == 'F'){                        //TRATAMENTO DE ERRO, CASO O USUÁRIO NÃO TENHA INSERIDO OS VETORES NA OPÇÃO "LEU VETOR" 
 		    	printf("\n** E necessario criar os vetores na opcao 'Leitura de vetores', poderas escolhe-la pressionando '1' no menu a seguir. **\n\n");
 		    	}
 		    	
