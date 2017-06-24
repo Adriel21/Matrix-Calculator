@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Matriz {
+	int Linhas;
+	int Colunas;
+	int **ender;
+};
+
+    int i, lin, col;
+	
+	
+struct Matriz leituraDeMat( int linhas, int colunas){
+	
+	struct Matriz matriz;
+	
+	matriz.Linhas=linhas;
+	matriz.Colunas=colunas;
+		
+	matriz.ender= (int**) malloc(matriz.Linhas*sizeof (int*));
+	
+	for(i = 0; i < matriz.Linhas ; i++) {
+        matriz.ender[i]= (int*) malloc(matriz.Colunas*sizeof (int*));
+	}
+
+	
+	for(lin = 0; lin < matriz.Linhas ; lin++){
+		for(col = 0; col < matriz.Colunas ; col++){
+			printf("Digite o elemento [%i][%i]: ", lin+1, col+1);
+			scanf("%i", &matriz.ender[lin][col]);
+		}
+		printf("\n");
+	}
+    
+    return matriz;
+}
+
+void exibicaoDeMat( struct Matriz matriz){
+ 
+
+	for(lin = 0; lin < matriz.Linhas; lin++){
+		printf("| ");
+		for(col = 0; col < matriz.Colunas; col++){
+			if(col < matriz.Colunas-1){
+			    printf("%i, ", matriz.ender[lin][col]);			
+			}
+			else{
+				printf("%i |\n", matriz.ender[lin][col]);	
+			}
+		}
+
+	}
+    printf("\n\n");
+
+}
+
+struct Matriz somaDeMat( struct Matriz matrizA, struct Matriz matrizB){
+	
+	struct Matriz matrizRes;
+	
+	matrizRes.Linhas= matrizA.Linhas;
+	matrizRes.Colunas= matrizA.Colunas;
+	
+	matrizRes.ender= (int**) malloc(matrizA.Linhas*sizeof (int*));
+	
+	for(i = 0; i < matrizA.Linhas ; i++) {
+        matrizRes.ender[i]= (int*) malloc(matrizA.Colunas*sizeof (int*));
+	}
+	
+	
+	for(lin = 0 ; lin < matrizA.Linhas ; lin++){
+		for( col = 0; col < matrizA.Colunas; col++){
+			matrizRes.ender[lin][col] = matrizA.ender[lin][col] + matrizB.ender[lin][col];
+		}
+	}
+	return matrizRes;
+}
+
+struct Matriz transpostaDeMat( struct Matriz matriz){
+	
+	struct Matriz matrizTrans;
+	
+    matrizTrans.Colunas = matriz.Linhas;
+    matrizTrans.Linhas = matriz.Colunas;
+    
+	matrizTrans.ender= (int**) malloc(matriz.Linhas*sizeof (int*));
+	
+	for(i = 0; i < matriz.Linhas ; i++) {
+        matrizTrans.ender[i] = (int*) malloc(matriz.Colunas*sizeof (int*));
+	}
+	
+	for (lin=0; lin< matriz.Linhas ; lin++){
+		for(col=0; col< matriz.Colunas ; col++){
+			matrizTrans.ender[col][lin]= matriz.ender[lin][col];
+		}
+	}
+	
+	return matrizTrans;
+}
+
+void matrizSimetrica (struct Matriz matriz, struct Matriz matrizTrans){
+     
+    int posicaoCoincidente;
+    
+     matrizTrans= transpostaDeMat(matriz);
+	
+	for (lin=0; lin< matriz.Linhas ; lin++){
+		for(col=0; col< matriz.Colunas ; col++){
+			if(matriz.ender[lin][col] == matrizTrans.ender[lin][col]){
+				posicaoCoincidente++;
+			}
+		}
+	}
+	
+	
+	    if (posicaoCoincidente == (matriz.Linhas * matriz.Colunas)){
+			printf("\n\n E simetrica. \n\n");
+		}
+		
+		else{
+		printf("\n\n Nao e simetrica. \n\n");
+		}
+	
+}
+
