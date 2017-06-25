@@ -2,10 +2,21 @@
 #include <stdio.h>
 #include "BIBLIOTECA.h"
 
+// DECLARAÇÕES PARA OS VETORES
     char opcao, alter, vetoresProntos = 'F';	
 	struct Vetor vetorA;
     struct Vetor vetorB;
     void opVetores();
+    
+// DECLARAÇÕES PARA AS MATRIZES
+    
+int linhas, colunas;
+char  alternativa, matrizesProntas = 'F';
+
+struct Matriz matrizA;
+struct Matriz matrizB;
+
+void opMatrizes();
     
 int main(void){
 
@@ -25,15 +36,19 @@ int main(void){
 		
 		break;  
 		
-		//case '2':      //CHAMAR A FUNÇÃO OPERAÇÃO DE MATRIZES 
+		case '2':      //CHAMAR A FUNÇÃO OPERAÇÃO DE MATRIZES 
 		
-		//break;
+			opMatrizes();
+		
+		break;
 		
 	    default: printf("\n\n\t\tOperacao Invalida.\n\n");    // TRATAMENTO DE ERRO
     }
 }
 
-void opVetores(){      // FUNÇÃO DAS OPERAÇÕES COM VETORES
+// FUNÇÃO DAS OPERAÇÕES COM VETORES
+
+void opVetores(){      
 	
 	do{      // LAÇO PARA QUE APÓS O PROCEDIMENTO ESCOLHIDO SEJA REALIZADO O "MENU DE OPERACOES COM VETORES" APAREÇA NOVAMENTE
 	
@@ -43,7 +58,7 @@ void opVetores(){      // FUNÇÃO DAS OPERAÇÕES COM VETORES
 			printf("\t\t2-Soma de Vetores\n");
 			printf("\t\t3-Multiplicar um dos vetores por um escalar\n");
 			printf("\t\t4-Realizar o Produto escalar de Vetores\n");
-			printf("\t\t0-Voltar ao Menu Anterior\n");
+			printf("\t\t5-Voltar ao Menu Anterior\n");
 			printf("\n\n\t\tOpcao: ");
 			scanf("\t\t%c", &alter);
 			
@@ -57,6 +72,16 @@ void opVetores(){      // FUNÇÃO DAS OPERAÇÕES COM VETORES
 		        printf("\n\n Digite o numero de elementos dos vetores: ");
 		        scanf("%d", &elem);
 		        
+		        if(elem<1){
+		        	printf("\n\nInvalido. Apresente uma quantidade maior do que zero.\n");
+		        	
+		        	printf("\n\n Digite o numero de elementos dos vetores: ");
+		        	scanf("%d", &elem);
+		        	
+				}
+		        
+		        else{
+		        	
 		        printf("\n\nDigite os elementos do primeiro vetor: \n");
 		        vetorA = leituraDeVet(elem); exibicaoDeVet (vetorA);
 		        printf("\n\nDigite os elementos do segundo vetor: \n");
@@ -64,6 +89,7 @@ void opVetores(){      // FUNÇÃO DAS OPERAÇÕES COM VETORES
 		        
 		        vetoresProntos = 'V';
 		    
+		    	}
 		    break;
 		    
 		    case '2':                                              // SOMA DOS VETORES
@@ -160,9 +186,257 @@ void opVetores(){      // FUNÇÃO DAS OPERAÇÕES COM VETORES
 				}
 			break;	
 			
+			case '5':
+			break;
+			
 			default: printf("\n\n\t\tOperacao invalida.\n\n");
 			
 			} 
 		
-	}while(alter!=5);
+	}while(alter!=6);
+	
+}
+
+// FIM DA FUNÇÃO DAS OPERAÇÕES COM VETORES
+
+
+
+
+
+
+//FUNÇÃO DAS OPERAÇÕES COM MATRIZES
+
+void opMatrizes (){
+	
+	do{
+	
+			printf("\n\n\t\t *MENU DE OPERACOES COM MATRIZES* \n\n");
+			printf("\t\tESCOLHA UMA DAS ALTERNATIVAS ABAIXO :\n\n");
+			printf("\t\t1-Leitura de Matrizes\n");
+			printf("\t\t2-Soma de Matrizes\n");
+			printf("\t\t3-Multiplicao de Matrizes\n");
+			printf("\t\t4-Calcular a Matriz Transposta\n");
+			printf("\t\t5-Calcular o Determinante de uma Matriz\n");
+			printf("\t\t6-Verificar se uma Matriz e Simetrica\n");
+			printf("\t\t7-Voltar ao Menu Anterior\n");
+			printf("\n\n\t\tOpcao: ");
+			scanf("\t\t%c", &alternativa);
+			
+			switch(alternativa){
+				
+				case '1':                                                             // LEITURA E EXIBIÇÃO DAS MATRIZES
+					printf("\n\nDigite o numero de linhas das suas matriz: ");
+					scanf("%d", &linhas);
+					printf("Digite o numero de colunas das suas matriz: ");
+					scanf("%d", &colunas);
+					printf("\n");
+		
+						if (linhas<1 || colunas<1){                                   // IF PARA O TRATAMENTO DE ERRO
+							
+							printf("\n\nInvalido. Apresente uma quantidade maior do que zero.\n");
+							
+							printf("Digite o numero de linhas das suas matrizes: ");
+							scanf("%i", &linhas);							
+							printf("Digite o numero de colunas das suas matrizes: ");
+							scanf("%i", &colunas);
+							printf("\n");
+					
+						}
+						
+						else{
+							printf("\n\nDigite os elementos da primeiro matriz: \n\n");
+							matrizA= leituraDeMat(linhas, colunas); 
+							printf("\n\nA matriz lida e: \n");
+							exibicaoDeMat(matrizA);
+
+							printf("\n\nDigite os elementos da segunda matriz: \n\n");
+							matrizB= leituraDeMat(linhas, colunas); 
+							printf("\n\nA matriz lida e: \n");
+							exibicaoDeMat(matrizB);
+						}
+						
+				matrizesProntas = 'N';  // ISSO PERMITE VERIFICAR SE AS MATRIZES FORAM DE FATO CRIADAS
+
+				break;
+				
+				case '2':                                                 // SOMA DE MATRIZES
+					
+					if( matrizesProntas == 'F'){                        //TRATAMENTO DE ERRO, CASO O USUÁRIO NÃO TENHA INSERIDO OS VETORES NA OPÇÃO "LER VETOR" 
+		    			printf("\n** E necessario criar as matrizes na opcao 'Leitura de matrizes', poderas escolhe-la pressionando '1' no menu a seguir. **\n\n");
+		    		}
+		    	
+		    		else{
+		    			
+						struct Matriz matrizC;
+		    		
+		    			printf("\n\n------------------------------- SOMA DE MATRIZES -----------------------------\n\n");
+		    			printf("\n\nMatriz 1 = \n"); exibicaoDeMat(matrizA);
+		    			printf("\nMatriz 2 = \n"); exibicaoDeMat(matrizB);
+		    			printf("\n\nA soma das matrizes e: \n"); 
+		    			matrizC = somaDeMat(matrizA, matrizB); 
+						exibicaoDeMat (matrizC);
+		    			
+		    			printf("\n\n");
+		    		}
+		    		
+				break;
+	
+				case '3':                                               // MULTIPLICAÇÃO DE MATRIZES 
+					
+					if( matrizesProntas == 'F'){                        //TRATAMENTO DE ERRO, CASO O USUÁRIO NÃO TENHA INSERIDO OS VETORES NA OPÇÃO "LER VETOR" 
+		    			printf("\n** E necessario criar as matrizes na opcao 'Leitura de matrizes', poderas escolhe-la pressionando '1' no menu a seguir. **\n\n");
+		    		}
+		    	
+		    		else{
+		    			
+		    			struct Matriz matrizMulti;
+		    			
+		    			printf("\n\n--------------------------- MULTIPLICACAO DE MATRIZES -------------------------\n\n");
+		    			printf("\n O produto entre as matrizes: \n\n");
+		    			exibicaoDeMat (matrizA);
+		    			printf("\n\n X \n\n");
+		    			exibicaoDeMat (matrizB);
+		    			printf("\n\n E igual a : \n\n");
+		    			
+		    			matrizMulti = multiplicacaoDeMat (matrizA, matrizB);
+		    			exibicaoDeMat (matrizMulti);
+		    			
+		    			
+		    		}
+				break;
+				
+				case '4':                                                 // MOSTRA A MATRIZ TRANSPOSTA
+				
+					int escolha;
+					struct Matriz matrizTrans;
+					if( matrizesProntas == 'F'){                        //TRATAMENTO DE ERRO, CASO O USUÁRIO NÃO TENHA INSERIDO OS VETORES NA OPÇÃO "LER VETOR" 
+		    			printf("\n** E necessario criar as matrizes na opcao 'Leitura de matrizes', poderas escolhe-la pressionando '1' no menu a seguir. **\n\n");
+		    		}
+		    		
+		    		else{
+		    			printf("\n\n------------------------------- MATRIZ TRANSPOSTA -----------------------------\n\n");
+		    			printf("\n\nEscolha qual matriz voce quer obter a transposta:");
+		    			printf("\n1 - MatrizA. \n");
+		    			printf("\n2 - MatrizB. \n\n");
+		    			printf("Escolha: ");
+		    			scanf("%d", &escolha);
+		    			
+		    			if(escolha==1){
+		    				matrizTrans= transpostaDeMat(matrizA);
+		    				printf("\n\nA transposta e: \n");
+		    				exibicaoDeMat(matrizTrans);
+						}
+						
+						else if(escolha==2){
+		    				matrizTrans= transpostaDeMat(matrizB);
+		    				printf("\n\nA transposta e: \n");
+		    				exibicaoDeMat(matrizTrans);
+		    			
+						}
+						
+						else{
+							printf("\n\n Escolha invalida, tente novamente escolhendo a opcao 4 a seguir. \n\n");
+						}
+				    
+				    }
+				    
+				break;
+				
+			
+				case '5':                                                 // IMPRIME O DETERMINANTE DE UMA DAS MATRIZES , CASO ELA SEJA DE ORDEM 1X1 , 2X2 OU 3X3
+					
+					int Escolha;
+					if( matrizesProntas == 'F'){                        //TRATAMENTO DE ERRO, CASO O USUÁRIO NÃO TENHA INSERIDO OS VETORES NA OPÇÃO "LER VETOR" 
+		    			printf("\n** E necessario criar as matrizes na opcao 'Leitura de matrizes', poderas escolhe-la pressionando '1' no menu a seguir. **\n\n");
+		    		}
+		    		
+		    		else{
+		    			printf("\n\n------------------------------- DETERMINANTE  -----------------------------\n\n");
+		    			printf("\n\n Escolha a matriz a qual deseja obter o determinante: \n\n");
+		    			printf("\n1 - MatrizA. \n");
+		    			printf("\n2 - MatrizB. \n\n");
+		    			printf("Escolha: ");
+		    			scanf("%d", &Escolha);
+		    			
+		    			if( Escolha == 1){
+		    				if (matrizA.Linhas==matrizA.Colunas){                         //IF PARA O TRATAMENTO DE ERRO. 
+		    					printf("\n\n O determinate e: %d ", determinanteDeMat ( matrizA ));
+		    				    }
+		    			    
+		    			    else{
+		    			    	printf("\n\n Nao ha determinante. \n\n");
+							}
+						}
+						
+						else if( Escolha == 2){
+		    				if (matrizB.Linhas==matrizB.Colunas){
+		    					printf("\n\n O determinate e: %d ", determinanteDeMat ( matrizB ));
+		    				}
+		    			    
+		    			    else{
+		    			    	printf("\n\n Nao ha determinante. \n\n");
+							}
+						}
+						
+						else {
+							
+							printf("\n\n Escolha invalida, tente novamente escolhendo a opcao 5 a seguir. \n\n");
+							
+						}
+		    	    }
+				break;
+				
+				case '6':                                                 // VERIFICA SE A MATRIZ É OU NÃO SIMÉTRICA
+					
+					int item;
+					if( matrizesProntas == 'F'){                        //TRATAMENTO DE ERRO, CASO O USUÁRIO NÃO TENHA INSERIDO OS VETORES NA OPÇÃO "LER VETOR" 
+		    			printf("\n** E necessario criar as matrizes na opcao 'Leitura de matrizes', poderas escolhe-la pressionando '1' no menu a seguir. **\n\n");
+		    		}
+		    		
+		    		else{
+						printf("\n\n------------------------------- MATRIZ SIMETRICA -----------------------------\n\n");
+						printf("\n\nEscolha qual matriz voce quer saber se e simetrica:");
+		    			printf("\n1 - MatrizA. \n");
+		    			printf("\n2 - MatrizB. \n\n");
+		    			printf("Escolha: ");
+		    			scanf("%i", &item );
+		    				if( item == 1 ){
+		    				    if (matrizA.Linhas==matrizA.Colunas){                      // IF PARA TRATAMENTO DE ERRO
+		    					matrizSimetrica ( matrizA , matrizTrans);
+		    				    }
+		    				    
+		    				    else {
+		    				    	printf("\n\n Nao e simetrica. \n\n");
+								}
+							}
+						
+							else if( item == 2 ){
+								if (matrizB.Linhas==matrizB.Colunas){
+									
+		    					matrizSimetrica ( matrizB , matrizTrans);
+		    					
+		    				    }
+		    				    
+		    				    else {
+		    				    	printf("\n\n Nao e simetrica. \n\n");
+		    				    	
+								}
+
+		    			
+							}
+						
+							else{
+								printf("\n\n Escolha invalida, tente novamente escolhendo a opcao 6 a seguir. \n\n");
+							}
+						
+					}
+		    			
+				break;
+				
+				case '7':
+				break;
+			
+			
+	    }
+	}while(alternativa!=8);
 }
