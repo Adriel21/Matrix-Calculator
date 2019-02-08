@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////////////////
+//                   Autor/Author: Adriel de Oliveira Araujo                    //
+//           Universidade Estadual do Ceará / Ceara State University            //
+//       Introdução a Ciência da Computação / Computer Science Introduction     //
+//          Calculadora de Matriz Biblioteca/ Matrix Calculator Library         //
+//////////////////////////////////////////////////////////////////////////////////
+
 #include <stdio.h>
 #include <stdlib.h>
 
